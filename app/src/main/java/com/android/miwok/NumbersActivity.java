@@ -2,12 +2,7 @@ package com.android.miwok;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -16,27 +11,27 @@ public class NumbersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_numbers);
+        setContentView(R.layout.word_list);
 
         //create array of words
-        ArrayList<String> words = new ArrayList<String>();
-        words.add(0,"One");
-        words.add(1,"Two");
-        words.add(2,"Three");
-        words.add(3,"Four");
-        words.add(4,"Five");
-        words.add(5,"Six");
-        words.add(6,"Seven");
-        words.add(7,"Eight");
-        words.add(8,"Nine");
-        words.add(9,"Ten");
-        words.add(10,"Eleven");
-        words.add(11,"tweleve");
-        words.add(12,"Thirteen");
-        words.add(13,"Thirteen");
-        words.add(14,"fourteen");
-        words.add(15,"fifty");
-        words.add(16,"sixteen");
+        ArrayList<Word> words = new ArrayList<>();
+        words.add(new Word("one", "lutti"));
+        words.add(new Word("two", "otiiko"));
+        words.add(new Word("three", "tolookosu"));
+        words.add(new Word("four", "oyyisa"));
+        words.add(new Word("five", "massokka"));
+        words.add(new Word("six", "temmokka"));
+        words.add(new Word("seven", "kenekaku"));
+        words.add(new Word("eight", "kawinta"));
+        words.add(new Word("nine", "wo’e"));
+        words.add(new Word("ten", "na’aacha"));
+        words.add(new Word("Eleven","luttilutti"));
+        words.add(new Word("tweleve","otiikootiiko"));
+        words.add(new Word("Thirteen","tolookosutolookosu"));
+        words.add(new Word("fourteen","oyyisaoyyisa"));
+        words.add(new Word("fifteen","massokkamassokka"));
+
+        /*words.add(16,"sixteen");
         words.add(17,"seventeen");
         words.add(18,"eighteen");
         words.add(19,"nineteen");
@@ -71,34 +66,35 @@ public class NumbersActivity extends AppCompatActivity {
         words.add(48,"fortyeight");
         words.add(49,"fortynine");
         words.add(50,"fifty");
+        */
 
 
         // Verify the contents of the list by printing out each element to the logs
 
-       /* Log.v("numberActivity","word at index 0:" +words.get(0));
-        Log.v("numberActivity","word at index 1:" +words.get(1));
-        Log.v("numberActivity","word at index 2:" +words.get(2));
-        Log.v("numberActivity","word at index 3:" +words.get(3));
-        Log.v("numberActivity","word at index 4:" +words.get(4));
-        Log.v("numberActivity","word at index 5:" +words.get(5));
-        Log.v("numberActivity","word at index 6:" +words.get(6));
-        Log.v("numberActivity","word at index 7:" +words.get(7));
-        Log.v("numberActivity","word at index 8:" +words.get(8));
-        Log.v("numberActivity","word at index 9:" +words.get(9));
+       /* Log.v("numberActivity","Word at index 0:" +words.get(0));
+        Log.v("numberActivity","Word at index 1:" +words.get(1));
+        Log.v("numberActivity","Word at index 2:" +words.get(2));
+        Log.v("numberActivity","Word at index 3:" +words.get(3));
+        Log.v("numberActivity","Word at index 4:" +words.get(4));
+        Log.v("numberActivity","Word at index 5:" +words.get(5));
+        Log.v("numberActivity","Word at index 6:" +words.get(6));
+        Log.v("numberActivity","Word at index 7:" +words.get(7));
+        Log.v("numberActivity","Word at index 8:" +words.get(8));
+        Log.v("numberActivity","Word at index 9:" +words.get(9));
         */
         // Find the root view so we can add child views to it
         //LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
-        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, words);
+        WordAdapter adapter = new WordAdapter(this, words);
 
         ListView listView = (ListView) findViewById(R.id.list);
 
-        listView.setAdapter(itemsAdapter);
+        listView.setAdapter(adapter);
         //while loop
         /*int index =0;
          while(index < words.size()){
              //create a new textView
              TextView wordView = new TextView(this);
-             //Set the text to be word at the current index
+             //Set the text to be Word at the current index
              wordView.setText(words.get(index));
              // Add this TextView as another child to the root view of this layout
              rootView.addView(wordView);
@@ -110,7 +106,7 @@ public class NumbersActivity extends AppCompatActivity {
         /*for (int index= 0;index<words.size();index++){
             //create a new textView
             TextView wordView = new TextView(this);
-            //Set the text to be word at the current index
+            //Set the text to be Word at the current index
             wordView.setText(words.get(index));
             // Add this TextView as another child to the root view of this layout
             rootView.addView(wordView);
